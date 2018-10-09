@@ -51,11 +51,24 @@ public class Professor {
         return salary;
     }
 
+    /**
+     * This reflects the Professor's annual salary and must be greater than 
+     * 0
+     * @param salary 
+     */
     public void setSalary(double salary) {
-        this.salary = salary;
+        if (salary > 0)
+            this.salary = salary;
+        else
+            throw new IllegalArgumentException("Salary must be greater than 0");
     }
 
     public ArrayList<String> getTeachableCourses() {
+        return teachableCourses;
+    }
+    
+    
+    public ArrayList<String> getTeachableSubjects() {
         return teachableCourses;
     }
 
@@ -63,8 +76,34 @@ public class Professor {
         this.teachableCourses = teachableCourses;
     }
     
+    /**
+     * This accepts a String that represents a course code and adds
+     * it as a "teachable subject" to the Professor
+     */
+    public void addCourseToTeachableSubjects(String courseCode)
+    {
+        teachableCourses.add(courseCode);
+    }
     
     
+    /**
+     * This method validates if the Professor can teach a subject
+     * that is passed in as a String.  The String represents the course
+     * code
+     */
+    public boolean canTeachSubject(String courseToTeach)
+    {
+        return teachableCourses.contains(courseToTeach);
+    }
+    
+    /**
+     * This method will return a String to describe the Professor
+     */
+    public String toString()
+    {
+        return String.format("%s teaches %d courses and earns $%.2f salary",
+                fullName, teachableCourses.size(), salary);
+    }
   
     
 }
